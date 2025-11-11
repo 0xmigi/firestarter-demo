@@ -48,7 +48,7 @@ function FilesGallery({ account, client }: FilesGalleryProps) {
       if (isImageFile(file.fileName)) {
         try {
           const uint8Array = await client.downloadFile(account, file.fileName);
-          const blob = new Blob([uint8Array]);
+          const blob = new Blob([uint8Array as unknown as BlobPart]);
           previews[file.fileId] = URL.createObjectURL(blob);
         } catch (err) {
           console.error('Failed to load preview for', file.fileName, err);
@@ -67,7 +67,7 @@ function FilesGallery({ account, client }: FilesGalleryProps) {
     setDownloading(file.fileId);
     try {
       const uint8Array = await client.downloadFile(account, file.fileName);
-      const blob = new Blob([uint8Array]);
+      const blob = new Blob([uint8Array as unknown as BlobPart]);
 
       // Create download link
       const url = URL.createObjectURL(blob);

@@ -51,7 +51,8 @@ function UploadsCard({ account, client, onLogout }: UploadsCardProps) {
   const handleDownload = async (file: UploadResult) => {
     setDownloading(file.fileId);
     try {
-      const blob = await client.downloadFile(account, file.fileName);
+      const uint8Array = await client.downloadFile(account, file.fileName);
+      const blob = new Blob([uint8Array as unknown as BlobPart]);
 
       // Create download link
       const url = window.URL.createObjectURL(blob);
