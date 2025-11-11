@@ -19,7 +19,7 @@
     "vite": "^7.2.2"
   },
   "dependencies": {
-    "firestarter-sdk": "link:../firestarter-sdk",
+    "firestarter-sdk": "^2.1.3",
     "lucide-react": "^0.553.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
