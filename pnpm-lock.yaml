@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   firestarter-sdk:
-    specifier: ^2.1.3
-    version: 2.1.3(react@19.2.0)
+    specifier: ^2.1.4
+    version: 2.1.4(react@19.2.0)
   lucide-react:
     specifier: ^0.553.0
     version: 0.553.0(react@19.2.0)
@@ -1092,8 +1092,8 @@ packages:
       picomatch: 4.0.3
     dev: true
 
-  /firestarter-sdk@2.1.3(react@19.2.0):
-    resolution: {integrity: sha512-5S4597PH+6zOlvs2LQxk/dwXva6J6lAYuOEFO9MhHjYtYtzggvPAlwbdTZqIkEMf8c6R15I4jNQkGRSUibo/lg==}
+  /firestarter-sdk@2.1.4(react@19.2.0):
+    resolution: {integrity: sha512-qhmZNHofBFQ6alhVbIfoxL3BMo+i+9jJ+oSzGp3x9l286ZUtKm6cYnr4dN7km+Npybd/toJGXOldQa5fTbXrLg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       react: '>=18.0.0'
