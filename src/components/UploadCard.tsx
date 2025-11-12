@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from 'react';
 import { PipeClient, PipeFileStorage } from 'firestarter-sdk';
 import type { PipeAccount, UploadResult } from 'firestarter-sdk';
-import { Upload, CheckCircle, AlertCircle } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface UploadCardProps {
   account: PipeAccount;
@@ -19,6 +19,7 @@ function UploadCard({ account, client }: UploadCardProps) {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState('');
   const [uploadedFile, setUploadedFile] = useState<UploadResult | null>(null);
+  const [showTechDetails, setShowTechDetails] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,13 +140,76 @@ function UploadCard({ account, client }: UploadCardProps) {
           </div>
         )}
 
-        <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+        <div className="bg-gray-50 rounded-lg p-4 space-y-3">
           <h3 className="text-sm font-medium text-gray-900">How it works</h3>
           <ul className="text-xs text-gray-600 space-y-1 ml-4 list-disc">
             <li>Files are uploaded to Pipe Network's decentralized storage</li>
             <li>Using UDP++ protocol for optimal performance</li>
-            <li>P1 routing automatically selects best paths</li>
+            <li>P1 routing intelligently selects parallel network routes</li>
           </ul>
+
+          <button
+            onClick={() => setShowTechDetails(!showTechDetails)}
+            className="flex items-center gap-1.5 text-xs font-medium text-orange-600 hover:text-orange-700 transition-colors"
+          >
+            {showTechDetails ? (
+              <>
+                <ChevronUp className="w-3.5 h-3.5" />
+                Hide technical details
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-3.5 h-3.5" />
+                See technical details
+              </>
+            )}
+          </button>
+
+          {showTechDetails && (
+            <div className="pt-3 border-t border-gray-200 space-y-3">
+              <div>
+                <h4 className="text-xs font-semibold text-gray-900 mb-2">Your Upload Journey:</h4>
+                <div className="bg-white p-3 rounded border border-gray-200 font-mono text-xs text-gray-700 space-y-0.5">
+                  <div>├─ Encoded with forward error correction (20% redundancy)</div>
+                  <div>├─ Split across parallel network paths</div>
+                  <div>├─ Routed through nearest Pipe nodes</div>
+                  <div>└─ Reconstructed even if packets are lost</div>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-semibold text-gray-900 mb-2">Why It's Faster:</h4>
+                <div className="space-y-1.5">
+                  <div className="flex items-start gap-1.5 text-xs">
+                    <span className="text-green-600 font-bold text-sm">✓</span>
+                    <div className="text-gray-700">
+                      <span className="font-medium text-gray-900">No retransmits:</span> FEC recovers lost packets mathematically
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-1.5 text-xs">
+                    <span className="text-green-600 font-bold text-sm">✓</span>
+                    <div className="text-gray-700">
+                      <span className="font-medium text-gray-900">No head-of-line blocking:</span> Parallel streams avoid TCP congestion
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-1.5 text-xs">
+                    <span className="text-green-600 font-bold text-sm">✓</span>
+                    <div className="text-gray-700">
+                      <span className="font-medium text-gray-900">Adaptive routing:</span> Switches to faster paths automatically
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-orange-50 border border-orange-200 rounded p-3">
+                <p className="text-xs text-gray-700">
+                  <span className="font-semibold text-orange-900">Real-world impact:</span> Traditional TCP uploads retransmit every lost packet, creating delays.
+                  UDP++ sends 20% redundancy upfront and reconstructs data mathematically—delivering perfect files with zero retransmits,
+                  even with 15% packet loss.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

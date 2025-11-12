@@ -61,7 +61,17 @@ function App() {
             <img src="/firestarter-logo.png" alt="Firestarter" className="h-20" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Firestarter Demo</h1>
-          <p className="text-gray-600">Experience next-generation decentralized storage powered by Pipe Network</p>
+          <p className="text-gray-600">
+            Experience next-generation decentralized storage powered by{' '}
+            <a
+              href="https://pipe.network/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 hover:text-orange-700 font-medium underline"
+            >
+              Pipe Network
+            </a>
+          </p>
         </div>
 
         {!account ? (
