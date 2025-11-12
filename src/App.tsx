@@ -6,7 +6,12 @@ import UploadCard from './components/UploadCard';
 import AccountCard from './components/AccountCard';
 import FilesGallery from './components/FilesGallery';
 
-const client = new PipeClient();
+// Use /api proxy on Vercel, direct API on localhost
+const baseUrl = window.location.hostname === 'localhost'
+  ? 'https://us-west-01-firestarter.pipenetwork.com'
+  : '/api';
+
+const client = new PipeClient({ baseUrl });
 const storage = new PipeAccountStorage();
 
 function App() {
